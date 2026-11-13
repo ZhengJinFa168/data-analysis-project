@@ -1,0 +1,1728 @@
+{
+  "config": {
+    "source": "Health Data NY - Hospital Inpatient Discharges (SPARCS De-Identified)",
+    "datasets": {
+      "2016": "gnzp-ekau",
+      "2017": "22g3-z7e7",
+      "2018": "yjgt-tq93",
+      "2019": "4ny4-j5zv",
+      "2020": "nxi5-zj9x",
+      "2021": "tg3i-cinn",
+      "2022": "5dtw-tffi",
+      "2023": "46xm-urtu"
+    },
+    "system_hsa": "Finger Lakes",
+    "ref_years": [
+      2017
+    ],
+    "stay_years": [
+      2017,
+      2018,
+      2019,
+      2023
+    ],
+    "trend_years": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2023
+    ],
+    "min_cell": 30,
+    "scope_where_2017plus": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+    "kpi_where": "(patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+    "stay_columns": [
+      "discharge_year",
+      "hospital_service_area",
+      "permanent_facility_id",
+      "age_group",
+      "gender",
+      "zip_code_3_digits",
+      "type_of_admission",
+      "emergency_department_indicator",
+      "payment_typology_1",
+      "apr_mdc_code",
+      "apr_drg_code",
+      "apr_severity_of_illness_code",
+      "apr_medical_surgical",
+      "length_of_stay",
+      "total_costs",
+      "patient_disposition",
+      "race",
+      "ethnicity"
+    ]
+  },
+  "tables": {
+    "lookups": {
+      "rows": 508,
+      "seconds": 57,
+      "downloaded_at": "2026-10-25T14:54:46+00:00"
+    },
+    "funnel": {
+      "rows": 48,
+      "seconds": 62,
+      "downloaded_at": "2026-10-25T14:55:48+00:00"
+    },
+    "ruler": {
+      "rows": 28746,
+      "seconds": 7,
+      "downloaded_at": "2026-10-25T14:55:55+00:00"
+    },
+    "stays": {
+      "rows": 6228309,
+      "seconds": 3267,
+      "downloaded_at": "2026-10-25T15:50:23+00:00"
+    },
+    "trend": {
+      "rows": 706548,
+      "seconds": 158,
+      "downloaded_at": "2026-10-25T15:53:00+00:00"
+    }
+  },
+  "queries": {
+    "lookups": [
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "apr_drg_code, apr_drg_description, apr_mdc_code, count(*) AS n_2023",
+        "$where": "apr_drg_code IS NOT NULL",
+        "$order": "apr_drg_code",
+        "$limit": "50000",
+        "$offset": "0",
+        "$group": "apr_drg_code, apr_drg_description, apr_mdc_code"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "apr_mdc_code, apr_mdc_description, count(*) AS n_2023",
+        "$where": "apr_mdc_code IS NOT NULL",
+        "$order": "apr_mdc_code",
+        "$limit": "50000",
+        "$offset": "0",
+        "$group": "apr_mdc_code, apr_mdc_description"
+      }
+    ],
+    "funnel": [
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20')"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17'"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes'"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20')"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17'"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20')"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17'"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes'"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20')"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17'"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20')"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17'"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes'"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20')"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17'"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20')"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17'"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "count(*) AS n",
+        "$where": "1 = 1 AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes'"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20')"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17'"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "count(*) AS n",
+        "$where": "hospital_service_area = 'Finger Lakes' AND permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))"
+      }
+    ],
+    "ruler": [
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "0",
+        "$group": "apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      }
+    ],
+    "stays": [
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "0"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "50000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "100000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "150000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "200000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "250000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "300000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "350000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "400000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "450000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "500000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "550000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "600000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "650000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "700000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "750000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "800000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "850000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "900000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "950000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1000000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1050000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1100000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1150000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1200000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1250000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1300000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1350000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1400000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1450000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1500000"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1550000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "0"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "50000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "100000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "150000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "200000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "250000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "300000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "350000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "400000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "450000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "500000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "550000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "600000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "650000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "700000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "750000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "800000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "850000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "900000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "950000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1000000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1050000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1100000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1150000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1200000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1250000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1300000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1350000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1400000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1450000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1500000"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1550000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "0"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "50000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "100000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "150000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "200000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "250000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "300000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "350000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "400000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "450000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "500000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "550000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "600000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "650000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "700000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "750000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "800000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "850000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "900000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "950000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1000000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1050000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1100000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1150000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1200000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1250000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1300000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1350000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1400000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1450000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1500000"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1550000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "0"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "50000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "100000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "150000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "200000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "250000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "300000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "350000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "400000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "450000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "500000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "550000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "600000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "650000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "700000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "750000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "800000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "850000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "900000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "950000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1000000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1050000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1100000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1150000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1200000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1250000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1300000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1350000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1400000"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "discharge_year, hospital_service_area, permanent_facility_id, age_group, gender, zip_code_3_digits, type_of_admission, emergency_department_indicator, payment_typology_1, apr_mdc_code, apr_drg_code, apr_severity_of_illness_code, apr_medical_surgical, length_of_stay, total_costs, patient_disposition, race, ethnicity, facility_name",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956')",
+        "$order": ":id",
+        "$limit": "50000",
+        "$offset": "1450000"
+      }
+    ],
+    "trend": [
+      {
+        "year": 2016,
+        "url": "https://health.data.ny.gov/resource/gnzp-ekau.csv",
+        "$select": "health_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "health_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "0",
+        "$group": "health_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2016,
+        "url": "https://health.data.ny.gov/resource/gnzp-ekau.csv",
+        "$select": "health_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "health_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "50000",
+        "$group": "health_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "0",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2017,
+        "url": "https://health.data.ny.gov/resource/22g3-z7e7.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "50000",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "0",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "50000",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2018,
+        "url": "https://health.data.ny.gov/resource/yjgt-tq93.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "100000",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "0",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "50000",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2019,
+        "url": "https://health.data.ny.gov/resource/4ny4-j5zv.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "100000",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2020,
+        "url": "https://health.data.ny.gov/resource/nxi5-zj9x.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "0",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2020,
+        "url": "https://health.data.ny.gov/resource/nxi5-zj9x.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "50000",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2021,
+        "url": "https://health.data.ny.gov/resource/tg3i-cinn.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "0",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2021,
+        "url": "https://health.data.ny.gov/resource/tg3i-cinn.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "50000",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2021,
+        "url": "https://health.data.ny.gov/resource/tg3i-cinn.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "100000",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "0",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "50000",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      },
+      {
+        "year": 2023,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.csv",
+        "$select": "hospital_service_area AS hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay, count(*) AS n",
+        "$where": "permanent_facility_id IS NOT NULL AND type_of_admission != 'Newborn' AND apr_mdc_code NOT IN ('14','15','19','20') AND age_group != '0 to 17' AND apr_drg_code NOT IN ('860','955','956') AND (patient_disposition IS NULL OR patient_disposition NOT IN ('Expired','Short-term Hospital'))",
+        "$order": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay",
+        "$limit": "50000",
+        "$offset": "100000",
+        "$group": "hospital_service_area, apr_drg_code, apr_severity_of_illness_code, length_of_stay"
+      }
+    ]
+  }
+}

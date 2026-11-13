@@ -1,0 +1,8 @@
+numpy
+pandas
+matplotlib
+seaborn
+pyarrow
+requests
+ipykernel
+jinja2

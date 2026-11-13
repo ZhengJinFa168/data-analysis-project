@@ -1,0 +1,49 @@
+area,year,step,rows
+New York State,2017,0 raw,2343569
+New York State,2017,1 facility known,2338414
+New York State,2017,2 no newborn / obstetrics / psychiatry / substance use,1681070
+New York State,2017,3 adults only,1581088
+New York State,2017,4 no rehab / ungroupable,1573501
+New York State,2017,5 KPI-eligible (no deaths / acute transfers),1493616
+Finger Lakes,2017,0 raw,153160
+Finger Lakes,2017,1 facility known,153160
+Finger Lakes,2017,2 no newborn / obstetrics / psychiatry / substance use,116434
+Finger Lakes,2017,3 adults only,110917
+Finger Lakes,2017,4 no rehab / ungroupable,110891
+Finger Lakes,2017,5 KPI-eligible (no deaths / acute transfers),105631
+New York State,2018,0 raw,2352807
+New York State,2018,1 facility known,2344003
+New York State,2018,2 no newborn / obstetrics / psychiatry / substance use,1694399
+New York State,2018,3 adults only,1595811
+New York State,2018,4 no rehab / ungroupable,1589194
+New York State,2018,5 KPI-eligible (no deaths / acute transfers),1509734
+Finger Lakes,2018,0 raw,153429
+Finger Lakes,2018,1 facility known,153429
+Finger Lakes,2018,2 no newborn / obstetrics / psychiatry / substance use,117175
+Finger Lakes,2018,3 adults only,111584
+Finger Lakes,2018,4 no rehab / ungroupable,111559
+Finger Lakes,2018,5 KPI-eligible (no deaths / acute transfers),106605
+New York State,2019,0 raw,2339462
+New York State,2019,1 facility known,2330391
+New York State,2019,2 no newborn / obstetrics / psychiatry / substance use,1694702
+New York State,2019,3 adults only,1601579
+New York State,2019,4 no rehab / ungroupable,1593826
+New York State,2019,5 KPI-eligible (no deaths / acute transfers),1513635
+Finger Lakes,2019,0 raw,153769
+Finger Lakes,2019,1 facility known,153769
+Finger Lakes,2019,2 no newborn / obstetrics / psychiatry / substance use,117079
+Finger Lakes,2019,3 adults only,112136
+Finger Lakes,2019,4 no rehab / ungroupable,112135
+Finger Lakes,2019,5 KPI-eligible (no deaths / acute transfers),107157
+New York State,2023,0 raw,2125754
+New York State,2023,1 facility known,2120421
+New York State,2023,2 no newborn / obstetrics / psychiatry / substance use,1564657
+New York State,2023,3 adults only,1478404
+New York State,2023,4 no rehab / ungroupable,1471788
+New York State,2023,5 KPI-eligible (no deaths / acute transfers),1390226
+Finger Lakes,2023,0 raw,137867
+Finger Lakes,2023,1 facility known,137867
+Finger Lakes,2023,2 no newborn / obstetrics / psychiatry / substance use,105470
+Finger Lakes,2023,3 adults only,99880
+Finger Lakes,2023,4 no rehab / ungroupable,99880
+Finger Lakes,2023,5 KPI-eligible (no deaths / acute transfers),94132

@@ -1,0 +1,15 @@
+# Course lecture slides folder (kept local, excluded from Git)
+Slides/
+
+# Python virtual environment & caches
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# macOS & Office temporary files
+.DS_Store
+**/.DS_Store
+~$*.pptx
+~$*.docx
+~$*.xlsx
